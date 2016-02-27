@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.overman.scorecard.R;
@@ -39,7 +38,7 @@ public class MainActivity extends Activity {
         mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
-        if (mSharedPreferences = null) {
+        if (mSharedPreferences == null) {
             mHoles = resetScores();
         } else {
             mHoles = new Hole[18];

@@ -16,5 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/holeList"
         android:dividerHeight="2dp"
-        android:divider="#ff000000"/>
+        android:divider="#ff000000"
+        />
+
 </RelativeLayout>
