@@ -7,21 +7,25 @@ import android.util.Log;
  */
 public class Hole {
     private static final String TAG = Hole.class.getSimpleName();
-    private int score = 0;
+    private int mScore = 0;
 
     public Hole() {
         Log.d(TAG, "Creating a Hole");
     }
     public int getScore() {
-        return score;
+        return mScore;
+    }
+    public void setScore(int i) {
+        mScore = i;
     }
 
     public void incrementScore() {
-        score += 1;
+        mScore += 1;
     }
 
     public void decrementScore() {
-        score -= 1;
+        mScore -= 1;
+        if (mScore < 0) mScore = 0;
     }
 
 

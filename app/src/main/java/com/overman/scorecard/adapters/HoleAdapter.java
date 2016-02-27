@@ -50,14 +50,14 @@ public class HoleAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.hole_list_item, null);
             holder = new ViewHolder();
             holder.holeNumberView = (TextView) convertView.findViewById(R.id.holeNumberView);
             holder.scoreView = (TextView) convertView.findViewById(R.id.scoreTextView);
-            holder.plusButtton = (Button) convertView.findViewById(R.id.plusButton);
+            holder.plusButton = (Button) convertView.findViewById(R.id.plusButton);
             holder.minusButton = (Button) convertView.findViewById(R.id.minusButton);
 
             convertView.setTag(holder);
@@ -65,19 +65,33 @@ public class HoleAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Hole hole = mHoles[position];
-        int holeNumber = position + 1;
+        final Hole hole = mHoles[position];
+        final int holeNumber = position + 1;
 
         holder.holeNumberView.setText("Hole " + holeNumber + ":");
         holder.scoreView.setText(hole.getScore() + "");
 
+        holder.plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hole.incrementScore();
+                holder.scoreView.setText(hole.getScore() + "");
+            }
+        });
+        holder.minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hole.decrementScore();
+                holder.scoreView.setText(hole.getScore() + "");
+            }
+        });
         return convertView;
     }
 
     private static class ViewHolder {
         TextView holeNumberView;
         TextView scoreView;
-        Button plusButtton;
+        Button plusButton;
         Button minusButton;
 
     }
